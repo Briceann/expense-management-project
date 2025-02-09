@@ -1,6 +1,6 @@
 Expense Management Project
 
-Problem Statement
+**Problem Statement**
     Managing personal finances can be challenging, especially when individuals lack a structured way to
 track daily expenses. Many people struggle with overspending, budgeting and categorizing their 
 expenditures, leading to financial instability. Existing expense tracking solutions may be too complex,
