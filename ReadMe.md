@@ -12,3 +12,17 @@ management. The system will include authentication for data privacy, logging for
 and essential features such as filtering, sorting, and graphic reports.By providing an efficient way
 to track spending habits, this application will help users make informed financial decisions and stay within
 their budget.
+
+### Technologies for Project
+1. Frontend
+- HTMl
+- CSS : Bootstrap
+2. Backend
+- Java
+3. Database
+- MySQL 8.x
+4. AWS for security and authentication
+5. Logging: Log4j
+6. JUnit Testing
+7. AWS for hosting
+8. API-TBD
