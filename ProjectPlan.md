@@ -15,9 +15,9 @@
 
 ## **Week 5**
 -[x] Complete Project plan
-- [ ] Create screen design using figma likely
-- [ ] Write Weekly reflection
-- [ ] Push all to GitHub
+- [x] Create screen design using figma likely
+- [x] Write Weekly reflection
+- [x] Push all to GitHub
 - [ ] First cut a database design - tables for users, categories, expenses
 
 ## **Week 6**

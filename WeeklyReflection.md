@@ -18,3 +18,4 @@
 ### Week 5
 - 2/17/25
 * 17th - Wrote project plan, weekly reflection started screen design - 2.5hrs
+* Finished rough draft of screen design committed and pushed design to gitHub - 1hr
