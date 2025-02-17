@@ -11,7 +11,7 @@ Users will be able to categorize their expenses so they know what money is being
 * View Summary
 User can see a dashboard showing expenses for the current month and can filter to see weekly or daily
 * Generate reports
-User can generate reports based on date and categories that wil be in a table form
+User can generate reports based on date and categories that wil be in a table format
 * Log Out
 User can log out of application securely
 * Receive emails
