@@ -1,11 +1,11 @@
-package entity;
-
+package edu.matc.entity;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 
 /**
  * Class for expenses
+ * @author Btaneh
  */
 @Entity
 @Table(name = "expenses")
@@ -16,7 +16,7 @@ public class Expense {
     private int expenseId;
 
     @ManyToOne
-    @JoinColumn(name = "user_user_id")
+    @JoinColumn(name = "user_id", referencedColumnName = "user_id")
     private User user;
 
     private String category;
@@ -96,6 +96,22 @@ public class Expense {
         this.description = description;
     }
 
+    /**
+     * Get user
+     * @return user
+     */
+    public User getUser() {
+        return user;
+    }
+
+    /**
+     * Set user
+     * @param user the user
+     */
+    public void setUser(User user) {
+        this.user = user;
+    }
+
     @Override
     public String toString() {
         return "Expense{" +
@@ -108,3 +124,4 @@ public class Expense {
                 '}';
     }
 }
+

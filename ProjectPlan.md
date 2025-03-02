@@ -18,14 +18,14 @@
 - [x] Create screen design using figma likely
 - [x] Write Weekly reflection
 - [x] Push all to GitHub
-- [ ] First cut a database design - tables for users, categories, expenses
+- [x] First cut a database design - tables for users, categories, expenses
 
 ## **Week 6**
--[ ] Complete database design
+-[x] Complete database design
 -[ ] Implement DAO for Expenses
-- [ ] Implement Hibernate
-- [ ] Write Unit tests using JUnit
-- [ ] Begin integrating Log4J for logging
+- [x] Implement Hibernate
+- [x] Write Unit tests using JUnit
+- [x] Begin integrating Log4J for logging
 
 ## **Week 7**
 -[ ] Complete DAO implementation ensure CRUD operations work

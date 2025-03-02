@@ -22,3 +22,4 @@
 
 ### Week 6
 25th - Create java classes and jsps needed to begin the project - 2hrs
+march 1st - created test classes and tried some test cases - 4hrs

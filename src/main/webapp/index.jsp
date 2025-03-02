@@ -1,5 +1,5 @@
 <html>
 <body>
-<h2>Project Setup</h2>
+<h2>Expense Management</h2>
 </body>
 </html>

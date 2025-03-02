@@ -8,9 +8,14 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>Sign In</title>
 </head>
 <body>
+    <form action="login" method="post">
+        Email: <input type="email" name="email" required>
+        Password <input type="password" name="password" required>
+        <button type="submit">Login</button>
+    </form>
 
 </body>
 </html>

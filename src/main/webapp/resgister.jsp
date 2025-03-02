@@ -8,9 +8,15 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>Register Account</title>
 </head>
 <body>
+    <form action="register" method="post">
+        Name: <input type="text" name="name" required>
+        Email: <input type="email" name="email" required>
+        Password: <input type="password" name="password" required>
+        <button type="submit">Register</button>
+    </form>
 
 </body>
 </html>
