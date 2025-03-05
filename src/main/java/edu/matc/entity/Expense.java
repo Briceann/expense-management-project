@@ -1,35 +1,85 @@
 package edu.matc.entity;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
+
+import java.io.Serializable;
 import java.time.LocalDate;
 
 /**
  * Class for expenses
  * @author Btaneh
  */
-@Entity
+@Entity (name = "Expense")
 @Table(name = "expenses")
-public class Expense {
+public class Expense implements Serializable {
+    private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
+    @Column(name = "expense_id")
     private int expenseId;
 
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "user_id")
     private User user;
 
-    private String category;
+    @ManyToOne
+    @JoinColumn(name = "category_id", referencedColumnName = "category_id", nullable = false)
+    private ExpenseCategory category;
+
+    @Column(name = "amount", nullable = false)
     private int amount;
+
+    @Column(name = "date", nullable = false)
     private LocalDate date;
+
+    @Column(name = "description")
     private String description;
+
+    /**
+     * No-argument constructor
+     */
+    public Expense() {
+
+    }
+
+    /**
+     * Constructor to create an Expense with initial values.
+     *
+     * @param category    the expense category
+     * @param amount      the expense amount
+     * @param date        the expense date
+     * @param description the expense description
+     */
+    public Expense(User user, ExpenseCategory category, int amount, LocalDate date, String description) {
+        this.user = user;
+        this.category = category;
+        this.amount = amount;
+        this.date = date;
+        this.description = description;
+    }
+
+    /**
+     * get expense id
+     */
+    public int getExpenseId() {
+        return expenseId;
+    }
+
+    /**
+     * set expense id
+     * @param expenseId the expense id
+     */
+    public void setExpenseId(int expenseId) {
+        this.expenseId = expenseId;
+    }
 
     /**
      * Get category
      *
      * @return the category
      */
-    public String getCategory() {
+    public ExpenseCategory getCategory() {
         return category;
     }
 
@@ -38,7 +88,7 @@ public class Expense {
      *
      * @param category the category
      */
-    public void setCategory(String category) {
+    public void setCategory(ExpenseCategory category) {
         this.category = category;
     }
 
@@ -106,10 +156,15 @@ public class Expense {
 
     /**
      * Set user
-     * @param user the user
+     * @param user the user who owns the expense
      */
     public void setUser(User user) {
         this.user = user;
+        if (user != null) {
+            if (!user.getExpenses().contains(this)) {
+                user.addExpense(this);
+            }
+        }
     }
 
     @Override
@@ -117,7 +172,7 @@ public class Expense {
         return "Expense{" +
                 "expenseId=" + expenseId +
                 ", user=" + user +
-                ", category='" + category + '\'' +
+                ", category='" + category.getName() + '\'' +
                 ", amount=" + amount +
                 ", date=" + date +
                 ", description='" + description + '\'' +

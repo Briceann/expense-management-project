@@ -12,7 +12,7 @@ import org.hibernate.SessionFactory;
 import java.util.List;
 
 /**
- * Expensedao class
+ * Expense Dao class
  * @author Btaneh
  */
 public class ExpenseDao {

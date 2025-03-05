@@ -47,5 +47,6 @@ public class SessionFactoryProvider {
         }
         return sessionFactory;
     }
+
 }
 
