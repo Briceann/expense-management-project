@@ -11,8 +11,8 @@ import java.time.LocalDate;
  */
 @Entity (name = "Expense")
 @Table(name = "expenses")
-public class Expense implements Serializable {
-    private static final long serialVersionUID = 1L;
+public class Expense {
+    //private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

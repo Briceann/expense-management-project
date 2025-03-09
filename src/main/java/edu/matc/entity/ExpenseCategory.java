@@ -3,15 +3,15 @@ package edu.matc.entity;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
-import java.security.Timestamp;
+import java.sql.Timestamp;
 import java.time.LocalDate;
 
 
 
 @Entity
 @Table(name = "expense_categories")
-public class ExpenseCategory implements Serializable {
-    private static final long serialVersionUID = 1L;
+public class ExpenseCategory {
+    //private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

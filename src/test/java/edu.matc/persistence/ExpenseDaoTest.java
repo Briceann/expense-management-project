@@ -1,8 +1,7 @@
 package edu.matc.persistence;
 
 import edu.matc.entity.Expense;
-import edu.matc.entity.User;
-import edu.matc.test.util.Database;
+import edu.matc.util.Database;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
