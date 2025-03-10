@@ -27,3 +27,7 @@ march 1st - created test classes and tried some test cases - 4hrs
 ### Week 7
 march 4th - Created a ExpenseCategory entity and 
 -tried working through some errors I keep getting in my code when running unit tests - 5hrs
+-debugged my code and finally got user test to pass without errors
+
+### Week 8
+- Continue writing tests for other Daos in my project

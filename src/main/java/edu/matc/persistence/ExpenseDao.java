@@ -1,6 +1,7 @@
 package edu.matc.persistence;
 
 import edu.matc.entity.Expense;
+import jakarta.persistence.criteria.CriteriaBuilder;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.apache.logging.log4j.LogManager;
@@ -58,7 +59,7 @@ public class ExpenseDao {
         session.persist(expense);
         transaction.commit();
         session.close();
-        return 0;
+        return expense.getExpenseId();
     }
 
     /**
@@ -79,12 +80,13 @@ public class ExpenseDao {
      *
      * @return All expenses.
      */
-    public List<Expense> getExpensesByUser() {
+    public List<Expense> getExpensesByUser(int userId) {
         Session session = sessionFactory.openSession();
 
+        CriteriaBuilder builder = session.getCriteriaBuilder();
         CriteriaQuery<Expense> query = session.getCriteriaBuilder().createQuery(Expense.class);
         Root<Expense> root = query.from(Expense.class);
-        query.select(root);
+        query.select(root).where(builder.equal(root.get("userId"), userId));
         List<Expense> expenses = session.createQuery(query).getResultList();
 
         logger.debug("The list of expenses: " + expenses);

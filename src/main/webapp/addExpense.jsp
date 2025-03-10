@@ -11,17 +11,25 @@
     <title>Add Expense</title>
 </head>
 <body>
-<form action="addExpense" method="post">
-    Date: <input type="date" name="date" required>
-    Category:
+<h2>Add Expense</h2>
+<form action="AddExpense" method="post">
+    <label>Date:</label>
+    <input type="date" name="date" required><br><br>
+
+    <label>Category:</label>
     <select name="category">
         <option>Food</option>
         <option>Rent</option>
         <option>Travel</option>
         <option>Shopping</option>
-    </select>
-    Amount: <input type="number" name="amount" required>
-    Description: <input type="text" name="description">
+    </select><br><br>
+
+    <label>Amount:</label>
+    <input type="number" name="amount" required><br><br>
+
+    <label>Description:</label>
+    <input type="text" name="description"><br><br>
+
     <button type="submit">Add Expense</button>
 </form>
 
