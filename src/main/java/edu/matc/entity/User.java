@@ -21,7 +21,7 @@ public class User {
     @Column(name = "user_id")
     private int userId;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     private List<Expense> expenses = new ArrayList<>();
 
     @Column(name = "first_name")

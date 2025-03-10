@@ -16,12 +16,19 @@ public class ExpenseCategoryDao {
     private final Logger logger = LogManager.getLogger(this.getClass());
     SessionFactory sessionFactory = SessionFactoryProvider.getSessionFactory();
 
-
+    /**
+     * Get ExpenseCategory by Id
+     *
+     * @param id the category Id
+     * @return the ExpenseCategory object
+     */
     public ExpenseCategory getCategoryById(int id) {
+        //ExpenseCategory expenseCategory = null;
         Session session = sessionFactory.openSession();
-        Transaction tx = session.beginTransaction();
-        ExpenseCategory expenseCategory = null;
-
+        //Transaction transaction = session.beginTransaction();
+        ExpenseCategory expenseCategory = session.get(ExpenseCategory.class, id);
+        //transaction.commit();
+        session.close();
         return expenseCategory;
     }
 }

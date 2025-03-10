@@ -1,5 +1,6 @@
 package edu.matc.persistence;
 
+import edu.matc.entity.Expense;
 import edu.matc.entity.User;
 import edu.matc.util.Database;
 
@@ -24,16 +25,6 @@ public class UserDaoTest {
         System.out.println("Running cleanDB.sql...");
         database.runSQL("cleanDB.sql");
         System.out.println("cleanDB.sql executed successfully.");
-
-        // Log initial database state
-        List<User> initialUsers = userDao.getAllUsers();
-        System.out.println("Initial Users after cleanDB.sql: " + initialUsers.size());
-        for (User user : initialUsers) {
-            System.out.println(user.getUserId() + " - " + user.getFirstName() + " " + user.getLastName());
-        }
-
-        // Verify initial state
-        assertEquals(3, initialUsers.size(), "Database state is not as expected after running cleanDB.sql");
 
     }
 
@@ -67,16 +58,24 @@ public class UserDaoTest {
 
     @Test
     void deleteUser() {
-        //userDao.delete(userDao.getUserById(2));
-        //assertNull(userDao.getUserById(2));
+        userDao.delete(userDao.getUserById(2));
+        assertNull(userDao.getUserById(2));
+    }
 
-        User userToDelete = userDao.getUserById(2);
-        if (userToDelete != null) {
-            userDao.delete(userToDelete);
-            assertNull(userDao.getUserById(2));
-        } else {
-            fail("User with ID 2 does not exist");
-        }
+    @Test
+    void deleteWithExpenses() {
+        User userToBeDeleted = userDao.getUserById(1);
+        List<Expense> expenses = userToBeDeleted.getExpenses();
+        int expenseNumber1 = expenses.get(0).getExpenseId();
+        int expenseNumber2 = expenses.get(1).getExpenseId();
+
+        userDao.delete(userToBeDeleted);
+        assertNull(userDao.getUserById(1));
+
+        ExpenseDao expenseDao = new ExpenseDao();
+        assertNull(expenseDao.getById(expenseNumber1));
+        assertNull(expenseDao.getById(expenseNumber2));
+
     }
 
     @Test

@@ -24,7 +24,7 @@ public class ViewExpense extends HttpServlet {
 //            return;
 //        }
 
-        request.setAttribute("expenses", expenseDao.getExpensesByUser(userId));
+        request.setAttribute("expenses", expenseDao.getAllExpenses());
         request.getRequestDispatcher("index.jsp").forward(request, response);
     }
 }

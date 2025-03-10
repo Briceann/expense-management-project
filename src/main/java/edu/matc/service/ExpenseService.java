@@ -32,6 +32,6 @@ public class ExpenseService {
      * @return A list of expenses for the given user.
      */
     public List<Expense> getExpensesForUser(int userId) {
-        return expenseDao.getExpensesByUser(userId);
+        return expenseDao.getAllExpenses();
     }
 }

@@ -28,7 +28,7 @@ public class Expense {
     private ExpenseCategory category;
 
     @Column(name = "amount", nullable = false)
-    private int amount;
+    private double amount;
 
     @Column(name = "date", nullable = false)
     private LocalDate date;
@@ -51,7 +51,7 @@ public class Expense {
      * @param date        the expense date
      * @param description the expense description
      */
-    public Expense(User user, ExpenseCategory category, int amount, LocalDate date, String description) {
+    public Expense(User user, ExpenseCategory category, double amount, LocalDate date, String description) {
         this.user = user;
         this.category = category;
         this.amount = amount;
@@ -97,7 +97,7 @@ public class Expense {
      *
      * @return the anount
      */
-    public int getAmount() {
+    public double getAmount() {
         return amount;
     }
 
@@ -106,7 +106,7 @@ public class Expense {
      *
      * @param amount the amount
      */
-    public void setAmount(int amount) {
+    public void setAmount(double amount) {
         this.amount = amount;
     }
 

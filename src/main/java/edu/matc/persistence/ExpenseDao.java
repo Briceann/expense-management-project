@@ -42,7 +42,7 @@ public class ExpenseDao {
     public void update(Expense expense) {
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
-        session.merge(expense);
+        session.update(expense);
         transaction.commit();
         session.close();
     }
@@ -54,12 +54,14 @@ public class ExpenseDao {
      * @return The generated id for the new expense.
      */
     public int insert(Expense expense) {
+        int expenseId = 0;
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
         session.persist(expense);
         transaction.commit();
+        expenseId = expense.getExpenseId();
         session.close();
-        return expense.getExpenseId();
+        return expenseId;
     }
 
     /**
@@ -80,13 +82,12 @@ public class ExpenseDao {
      *
      * @return All expenses.
      */
-    public List<Expense> getExpensesByUser(int userId) {
+    public List<Expense> getAllExpenses() {
         Session session = sessionFactory.openSession();
 
         CriteriaBuilder builder = session.getCriteriaBuilder();
         CriteriaQuery<Expense> query = session.getCriteriaBuilder().createQuery(Expense.class);
         Root<Expense> root = query.from(Expense.class);
-        query.select(root).where(builder.equal(root.get("userId"), userId));
         List<Expense> expenses = session.createQuery(query).getResultList();
 
         logger.debug("The list of expenses: " + expenses);
