@@ -117,7 +117,6 @@ CREATE TABLE `users` (
   `first_name` varchar(50) NOT NULL,
   `last_name` varchar(50) NOT NULL,
   `user_name` varchar(15) DEFAULT NULL,
-  `password` varchar(255) NOT NULL,
   `email` varchar(100) NOT NULL,
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
@@ -131,7 +130,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'Jenny','Smith','jsmith','jsmith01','jenny@gmail.com','2025-02-27 08:03:14','2025-02-27 08:03:14'),(2,'Princess','Adams','padams','padams11','adams@hotmail.com','2025-02-27 14:03:14','2025-02-27 14:03:14'),(3,'Dave','Keys','dkeys','dkeys02','mdkeys04@gmail.com','2025-03-03 03:30:34','2025-03-03 03:30:34');
+INSERT INTO `users` VALUES (1,'Jenny','Smith','jsmith','jenny@gmail.com','2025-02-27 08:03:14','2025-02-27 08:03:14'),(2,'Princess','Adams','padams','adams@hotmail.com','2025-02-27 14:03:14','2025-02-27 14:03:14'),(3,'Dave','Keys','dkeys','mdkeys04@gmail.com','2025-03-03 03:30:34','2025-03-03 03:30:34');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

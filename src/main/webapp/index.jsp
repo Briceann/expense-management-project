@@ -1,14 +1,16 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@include file="head.jsp"%>
 <html>
-<head>
-    <title>Expense Management</title>
-</head>
 <body>
-<h2>Expense Management</h2>
-
-<p>Track Your Expenses</p>
-<a href="addExpense.jsp">Add Expense</a>
-
+<h2>Search Users</h2>
+<form action="user" method="get">
+    <div class="form-group">
+        <label for="searchTerm">Search by Last Name:</label>
+        <input type="text" id="searchTerm" name="searchTerm" placeholder="Enter last name">
+    </div>
+    <div>
+        <button type="submit" name="submit" value="search" class="btn btn-primary">Search</button>
+        <button type="submit" name="submit" value="search" class="btn btn-primary">View All Users</button>
+    </div>
+</form>
 </body>
 </html>

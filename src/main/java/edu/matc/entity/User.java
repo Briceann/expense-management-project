@@ -36,9 +36,6 @@ public class User {
     @Column(name = "email")
     private String email;
 
-    @Column(name = "password")
-    private String password;
-
     /**
      * No argument constructor
      */
@@ -51,14 +48,23 @@ public class User {
      * @param lastName the last name
      * @param email the email
      */
-    public User(String firstName, String lastName, String username, String email, String password) {
+    public User(String firstName, String lastName, String username, String email) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.username =username;
         this.email = email;
-        this.password = password;
         this.expenses = new ArrayList<>();
 
+    }
+
+    /**
+     * Constructor with parameters for creating new users
+     * @param username the username
+     * @param email the email
+     */
+    public User(String username, String email) {
+        this.username = username;
+        this.email = email;
     }
 
     /**
@@ -180,24 +186,6 @@ public class User {
         this.userId = userId;
     }
 
-    /**
-     * Gets password
-     *
-     * @return the password
-     */
-    public String getPassword() {
-        return password;
-    }
-
-    /**
-     * Sets password
-     *
-     * @param password the password
-     */
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
 
     @Override
     public String toString() {
@@ -205,8 +193,9 @@ public class User {
                 "userId=" + userId +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
+                ", username='" + username + '\'' +
                 ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
+                ", expenses=" + expenses.size() +
                 '}';
     }
 

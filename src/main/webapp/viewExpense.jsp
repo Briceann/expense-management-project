@@ -9,12 +9,18 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>Expense List</title>
 </head>
 <body>
-<table>
+<h2>Expense List</h2>
+<a href="addExpense.jsp">Add New Expense</a>
+
+<table border="1">
     <tr>
-        <th>Date</th><th>Category</th><th>Amount</th><th>Description</th><th>Actions</th>
+        <th>Date</th><th>Category</th>
+        <th>Amount</th>
+        <th>Description</th>
+        <th>Actions</th>
     </tr>
     <c:forEach var="expense" items="${expenses}">
         <tr>
@@ -23,12 +29,11 @@
             <td>${expense.amount}</td>
             <td>${expense.description}</td>
             <td>
-                <a href="updateExpense.jsp?expenseId=${expense.expenseId}">Edit</a>
-                <a href="deleteExpense.jsp?expenseId=${expense.expenseId}">Delete</a>
+                <a href="expense?action=edit&id=${expense.expenseId}">Edit</a>
+                <a href="expense?action=delete&id=${expense.expenseId}" onclick="return confirm('Are you sure?')">Delete</a>
             </td>
         </tr>
     </c:forEach>
 </table>
-
 </body>
 </html>

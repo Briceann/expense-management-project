@@ -1,10 +1,7 @@
 package edu.matc.persistence;
 
 import edu.matc.entity.User;
-import jakarta.persistence.criteria.CriteriaBuilder;
-import jakarta.persistence.criteria.CriteriaQuery;
-import jakarta.persistence.criteria.Expression;
-import jakarta.persistence.criteria.Root;
+import jakarta.persistence.criteria.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.hibernate.Session;
@@ -12,6 +9,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.query.criteria.HibernateCriteriaBuilder;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -83,7 +81,45 @@ public class UserDao {
         session.close();
         return users;
 
+    }
 
+    public List<User> getAllUsersWithExpenses() {
+        List<User> users = new ArrayList<>();
+        try (Session session = sessionFactory.openSession()) {
+            HibernateCriteriaBuilder builder = session.getCriteriaBuilder();
+            CriteriaQuery<User> query = builder.createQuery(User.class);
+            Root<User> root = query.from(User.class);
+
+            // Fetch expenses and categories
+            root.fetch("expenses", JoinType.LEFT);
+
+            query.select(root);
+            users = session.createQuery(query).getResultList();
+
+            logger.info("Retrieved " + users.size() + " users with expenses.");
+        } catch (Exception e) {
+            logger.error("Error fetching users with expenses", e);
+        }
+        return users;
+    }
+
+    /**
+     * Get user by property (exact match)
+     * sample usage: getByPropertyEqual("lastname", "Adams")
+     */
+    public List<User> getByPropertyEqual(String propertyName, String value) {
+        Session session = sessionFactory.openSession();
+
+        logger.debug("Searching for user with " + propertyName + " = " + value);
+
+        HibernateCriteriaBuilder builder = session.getCriteriaBuilder();
+        CriteriaQuery<User> query = builder.createQuery(User.class);
+        Root<User> root = query.from(User.class);
+        query.select(root).where(builder.equal(root.get(propertyName), value));
+        List<User> users = session.createSelectionQuery( query ).getResultList();
+
+        session.close();
+        return users;
     }
 
 }

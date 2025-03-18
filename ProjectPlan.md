@@ -22,18 +22,18 @@
 
 ## **Week 6**
 -[x] Complete database design
--[ ] Implement DAO for Expenses
+-[x] Implement DAO for Expenses
 - [x] Implement Hibernate
 - [x] Write Unit tests using JUnit
 - [x] Begin integrating Log4J for logging
 
 ## **Week 7**
--[ ] Complete DAO implementation ensure CRUD operations work
-- [ ] Finalize Unit tests for DAO ensuring proper database interaction
--[ ] Implement log4j
-- [ ] Test DAO with a database connection to ensure Hibernate is working
-- [ ] Push everything to gitHub
-- [ ] Submit week 7 checkpoint
+-[x] Complete DAO implementation ensure CRUD operations work
+- [x] Finalize Unit tests for DAO ensuring proper database interaction
+-[x] Implement log4j
+- [x] Test DAO with a database connection to ensure Hibernate is working
+- [x] Push everything to gitHub
+- [x] Submit week 7 checkpoint
 
 ## **Week 8**
 -[ ] Develop Restful APIs for expense tracking

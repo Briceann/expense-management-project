@@ -22,9 +22,7 @@ public class UserDaoTest {
     void setUp() {
         userDao = new UserDao();
         Database database = Database.getInstance();
-        System.out.println("Running cleanDB.sql...");
         database.runSQL("cleanDB.sql");
-        System.out.println("cleanDB.sql executed successfully.");
 
     }
 
@@ -49,7 +47,7 @@ public class UserDaoTest {
 
     @Test
     void insertUser() {
-        User userToInsert = new User("Cyn", "Skai", "cskai", "cskai20@gmail.com", "cskai11");
+        User userToInsert = new User("Cyn", "Skai", "cskai", "cskai20@gmail.com");
         int insertedUserId = userDao.insertUser(userToInsert);
         assertNotEquals(0, insertedUserId);
         User insertedUser = userDao.getUserById(insertedUserId);
@@ -81,14 +79,19 @@ public class UserDaoTest {
     @Test
     void getAllUsers() {
         List<User> users = userDao.getAllUsers();
-        System.out.println("Users after cleanDB.sql: " + users.size());
         assertEquals(3, users.size());
+    }
+
+    @Test
+    void getByPropertyEqual() {
+        List<User> users = userDao.getByPropertyEqual("lastName", "Adams");
+        assertEquals(1, users.size());
+        assertEquals(2, users.get(0).getUserId());
     }
 
     @AfterEach
     void tearDown() {
         // Log state after each test
         List<User> users = userDao.getAllUsers();
-        System.out.println("Users after test: " + users.size());
     }
 }
