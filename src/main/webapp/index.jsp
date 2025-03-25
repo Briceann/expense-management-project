@@ -2,7 +2,7 @@
 <html>
 <body>
 <h2>Search Users</h2>
-<form action="user" method="get">
+<form action="${pageContext.request.contextPath}/user" method="get">
     <div class="form-group">
         <label for="searchTerm">Search by Last Name:</label>
         <input type="text" id="searchTerm" name="searchTerm" placeholder="Enter last name">
