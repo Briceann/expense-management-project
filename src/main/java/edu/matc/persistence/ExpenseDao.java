@@ -95,4 +95,15 @@ public class ExpenseDao {
 
         return expenses;
     }
+
+    public List<Expense> getExpensesByUserId(int userId) {
+        Session session = sessionFactory.openSession();
+        CriteriaBuilder builder = session.getCriteriaBuilder();
+        CriteriaQuery<Expense> query = builder.createQuery(Expense.class);
+        Root<Expense> root = query.from(Expense.class);
+        List<Expense> expenses = session.createQuery(query).getResultList();
+        logger.debug("The list of expenses: " + expenses);
+        session.close();
+        return expenses;
+    }
 }

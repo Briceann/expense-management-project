@@ -1,13 +1,13 @@
 package edu.matc.controller;
 
 import edu.matc.persistence.UserDao;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.*;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.*;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
-import jakarta.servlet.RequestDispatcher;
+import javax.servlet.RequestDispatcher;
 import java.io.IOException;
 
 @WebServlet(urlPatterns = "/user")
@@ -18,14 +18,23 @@ public class UserServlet extends HttpServlet {
 
         UserDao userDao = new UserDao();
 
-        if (request.getParameter("submit").equals("search")) {
+//        if (request.getParameter("submit").equals("search")) {
+//            request.setAttribute("users", userDao.getByPropertyEqual("lastName", request.getParameter("searchTerm")));
+//        } else {
+//            request.setAttribute("users", userDao.getAllUsers());
+//        }
+
+        String submit = request.getParameter("submit");
+        if ("search".equals(submit)) {
             request.setAttribute("users", userDao.getByPropertyEqual("lastName", request.getParameter("searchTerm")));
-        } else {
+        } else if ("view".equals(submit)) {
             request.setAttribute("users", userDao.getAllUsers());
         }
+
         RequestDispatcher dispatcher = request.getRequestDispatcher("/user-list.jsp");
         dispatcher.forward(request, response);
 
     }
 
 }
+

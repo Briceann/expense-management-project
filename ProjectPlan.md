@@ -36,7 +36,7 @@
 - [x] Submit week 7 checkpoint
 
 ## **Week 8**
--[ ] Develop Restful APIs for expense tracking
+-[x] Develop Restful APIs for expense tracking
 - [ ] Implement Expense Dashboard
 - [ ] Add Charts/Reports like monthly breakdown etc.
 - [ ] Ensure UI fetches and displays database correctly

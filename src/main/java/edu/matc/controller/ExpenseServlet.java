@@ -6,11 +6,13 @@ import edu.matc.entity.User;
 import edu.matc.persistence.ExpenseCategoryDao;
 import edu.matc.persistence.ExpenseDao;
 import edu.matc.persistence.UserDao;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -60,12 +62,17 @@ public class ExpenseServlet extends HttpServlet {
 
     private void listExpenses(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        List<Expense> expenses = expenseDao.getAllExpenses();
+        String userIdParam = request.getParameter("userId");
 
-        if (expenses.isEmpty()) {
-            logger.warn("No expenses found.");
+        List<Expense> expenses;
+        if (userIdParam != null) {
+            int userId = Integer.parseInt(userIdParam);
+            expenses = expenseDao.getExpensesByUserId(userId);
+            request.setAttribute("userId", userId);
+            logger.info("Viewing expenses for userId=" + userId);
         } else {
-            logger.info("Retrieved " + expenses.size() + " expenses.");
+            expenses = expenseDao.getAllExpenses();
+            logger.info("Viewing all expenses");
         }
 
         request.setAttribute("expenses", expenses);
@@ -74,6 +81,7 @@ public class ExpenseServlet extends HttpServlet {
 
     private void addExpense(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        Expense expense = null;
         try {
             int userId = Integer.parseInt(request.getParameter("userId"));
             int categoryId = Integer.parseInt(request.getParameter("categoryId"));
@@ -90,13 +98,18 @@ public class ExpenseServlet extends HttpServlet {
                 return;
             }
 
-            Expense expense = new Expense(user, category, amount, date, description);
+            expense = new Expense(user, category, amount, date, description);
             expenseDao.insert(expense);
             logger.info("Added new expense for User ID: " + userId);
         } catch (Exception e) {
             logger.error("Error adding expense", e);
+            response.sendRedirect("viewExpense.jsp");
+            return;
         }
-        response.sendRedirect("addExpense.jsp?error=invalid_data");
+        response.sendRedirect("expense?userId=" + expense.getUser().getUserId());
+
+//        RequestDispatcher dispatcher = request.getRequestDispatcher("/addExpense.jsp");
+//        dispatcher.forward(request, response);
     }
 
     private void deleteExpense(HttpServletRequest request, HttpServletResponse response)

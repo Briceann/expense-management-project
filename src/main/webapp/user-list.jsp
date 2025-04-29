@@ -18,6 +18,7 @@
       <th>Last Name</th>
       <th>Username</th>
       <th>Email</th>
+      <th>Expenses</th>
     </tr>
     </thead>
     <tbody>
@@ -27,10 +28,16 @@
         <td>${user.lastName}</td>
         <td>${user.username}</td>
         <td>${user.email}</td>
+        <td>
+          <c:forEach var="expense" items="${user.expenses}">
+            ${expense.description}
+          </c:forEach>
+        </td>
       </tr>
     </c:forEach>
     </tbody>
   </table>
 </div>
+<a href="index.jsp">Return to Home </a>
 </body>
 </html>
